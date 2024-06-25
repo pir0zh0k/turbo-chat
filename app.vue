@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 useSeoMeta({
-  title: "IChat",
-  description: "Это мой крутой реалтайм веб-чат!",
+  title: "Turbo-Chat",
+  description: "Переписки никогда не были такими простыми и безопасными",
 });
 </script>
 
