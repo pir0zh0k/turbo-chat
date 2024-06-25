@@ -1,0 +1,207 @@
+//Colors
+
+/*
+ * Slate
+ */
+$slate-950: #020617;
+$slate-800: #1e293b;
+$slate-700: #334155;
+$slate-600: #475569;
+$slate-500: #64748b;
+$slate-400: #94a3b8;
+$slate-50: #f8fafc;
+
+$slate-600-transparent: rgba(71, 85, 105, 0.4);
+$slate-500-transparent: rgba(100, 116, 139, 0.4);
+$slate-950-transparent: rgba(2, 6, 23, 0.5);
+
+/*
+ * Blue
+ */
+$blue-500: #3b82f6;
+$blue-600: #2563eb;
+
+$blue-500-transparent: rgba(59, 130, 246, 0.4);
+$blue-600-transparent: rgba(37, 99, 235, 0.4);
+
+/*
+ * Green
+ */
+
+$green-500: #22c55e;
+$green-600: #16a34a;
+
+$green-500-transparent: rgba(34, 197, 94, 0.4);
+$green-600-transparent: rgba(22, 163, 74, 0.4);
+
+//Errors
+$color-text-field-error: #ef4444;
+
+//Rounded
+$rounded-5: 5px;
+$rounded-10: 10px;
+$rounded-15: 15px;
+$rounded-20: 20px;
+
+//Screens
+$media-desktop: "max-width: 1280px";
+$media-tablet: "max-width: 768px";
+$media-mobile: "max-width: 420px";
+$media-desktop-revert: "min-width: 1280px";
+$media-tablet-revert: "min-width: 768px";
+$media-mobile-revert: "min-width: 420px";
+
+//Default text mixins
+@mixin Text-md() {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+}
+
+@mixin Text-lg() {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+}
+
+//Mixins
+@mixin Label {
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+}
+
+@mixin TextFieldError {
+  font-size: 14px;
+  color: $color-text-field-error;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+}
+
+@mixin FormTitle {
+  font-size: 46px;
+  line-height: 48px;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  text-align: center;
+}
+
+@mixin TextField {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+
+  &__body {
+    border-bottom: 1px solid $slate-500;
+    padding: 0 0 14px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      border-bottom: 1px solid $slate-400;
+    }
+  }
+
+  &__label {
+    @include Label;
+    cursor: pointer;
+    display: inline-block;
+    width: 160px;
+    min-width: 160px;
+  }
+
+  &__input {
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+
+    &::placeholder {
+      font-weight: 300;
+      color: $slate-500;
+    }
+  }
+
+  &__error {
+    @include TextFieldError();
+    display: inline-block;
+    margin-top: 10px;
+  }
+}
+
+@mixin UIButton() {
+  transition: all .2s ease;
+  border-radius: $rounded-5;
+  cursor: pointer;
+  display: block;
+
+  &._md {
+    @include Text-md();
+    padding: 5px 10px;
+  }
+
+  &._lg {
+    @include Text-lg();
+    padding: 10px 20px;
+  }
+
+  &._primary {
+    background: $blue-500;
+
+    &:hover {
+      background: $blue-600;
+    }
+
+    &._ghost {
+      background: $blue-500-transparent;
+
+      &:hover {
+        background: $blue-600-transparent;
+      }
+    }
+  }
+
+  &._secondary {
+    background: $slate-500;
+
+    &:hover {
+      background: $slate-600;
+    }
+
+    &._ghost {
+      background: $slate-500-transparent;
+
+      &:hover {
+        background: $slate-600-transparent;
+      }
+    }
+  }
+
+  &._success {
+    background: $green-500;
+
+    &:hover {
+      background: $green-600;
+    }
+
+    &._ghost {
+      background: $green-500-transparent;
+
+      &:hover {
+        background: $green-600-transparent;
+      }
+    }
+  }
+
+  &._center {
+    margin: 0 auto;
+  }
+
+  &._fullWidth {
+    width: 100%;
+  }
+}
