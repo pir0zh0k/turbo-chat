@@ -6,11 +6,11 @@ import type {
 } from "~/types/buttons";
 
 type Props = {
-  size: UIButtonSizeType;
-  color: UIButtonColorsType;
-  variant: UIButtonVariantsType;
-  alignCenter: boolean;
-  fullWidth: boolean;
+  size?: UIButtonSizeType;
+  color?: UIButtonColorsType;
+  variant?: UIButtonVariantsType;
+  alignCenter?: boolean;
+  fullWidth?: boolean;
 };
 
 withDefaults(defineProps<Props>(), {

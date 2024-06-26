@@ -5,26 +5,24 @@ defineProps<{
   label: string;
   placeholder?: string;
   error?: string | null;
+  isError?: boolean;
 }>();
-
-const emits = defineEmits(["clearError"]);
 
 const value = defineModel();
 </script>
 
 <template>
   <label class="text-field">
-    <span class="text-field__body">
+    <span class="text-field__body" :class="{ _error: isError }">
       <span class="text-field__label">{{ label }}</span>
       <input
         :placeholder="placeholder"
         class="text-field__input"
         :type="type"
         v-model="value"
-        @input="$emit('clearError')"
       />
     </span>
-    <span v-if="error" class="text-field__error">
+    <span v-if="isError" class="text-field__error">
       {{ error }}
     </span>
   </label>

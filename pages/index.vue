@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import RegForm from "~/components/forms/RegForm/RegForm.vue";
+import LoginForm from "~/components/forms/LoginForm/LoginForm.vue";
 </script>
 
 <template>
@@ -7,7 +8,9 @@ import RegForm from "~/components/forms/RegForm/RegForm.vue";
     <div class="grid__left">
       <RegForm />
     </div>
-    <div class="grid__right"></div>
+    <div class="grid__right">
+      <LoginForm />
+    </div>
   </div>
 </template>
 

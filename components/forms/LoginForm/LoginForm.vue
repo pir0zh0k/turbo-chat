@@ -2,18 +2,16 @@
 import TextField from "~/components/ui/TextFields/TextField.vue";
 import UIButton from "~/components/ui/Buttons/UIButton.vue";
 import useVuelidate from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import { required } from "@vuelidate/validators";
 
 const user = reactive({
   username: "",
   password: "",
-  email: "",
 });
 
 const rules = {
   username: { required },
   password: { required },
-  email: { required, email },
 };
 
 const $v = useVuelidate(rules, user);
@@ -27,7 +25,7 @@ async function validate() {
 
 <template>
   <form class="form" @submit.prevent="validate">
-    <h1 class="form__title">Регистрация</h1>
+    <h1 class="form__title">Вход</h1>
     <TextField
       v-model="user.username"
       name="username"
@@ -46,18 +44,12 @@ async function validate() {
       :is-error="$v.password.$error"
       error="Поле обязательно для заполнения"
     />
-    <TextField
-      v-model="user.email"
-      name="email"
-      type="text"
-      label="Электронная почта"
-      placeholder="Введите электронную почту..."
-      :is-error="$v.email.$error"
-      error="Введите корректную электронную почту"
-    />
-    <UIButton variant="normal" size="lg" color="primary" align-center>
-      Создать аккаунт
-    </UIButton>
+    <div class="form__bottom">
+      <UIButton variant="normal" size="lg" color="primary"> Войти </UIButton>
+      <NuxtLink class="form__update-password" href="https://google.com">
+        Забыли пароль?
+      </NuxtLink>
+    </div>
   </form>
 </template>
 
@@ -77,6 +69,17 @@ async function validate() {
   &__title {
     @include FormTitle();
     margin-bottom: 40px;
+  }
+
+  &__bottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__update-password {
+    @include LinkMini();
   }
 }
 </style>

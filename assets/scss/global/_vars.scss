@@ -18,7 +18,7 @@ $slate-950-transparent: rgba(2, 6, 23, 0.5);
 /*
  * Blue
  */
-$blue-500: #3b82f6;
+$blue-500: rgb(59, 130, 246);
 $blue-600: #2563eb;
 
 $blue-500-transparent: rgba(59, 130, 246, 0.4);
@@ -103,6 +103,10 @@ $media-mobile-revert: "min-width: 420px";
     &:hover {
       border-bottom: 1px solid $slate-400;
     }
+
+    &._error {
+      border-bottom: 1px solid $color-text-field-error;
+    }
   }
 
   &__label {
@@ -133,7 +137,7 @@ $media-mobile-revert: "min-width: 420px";
   }
 }
 
-@mixin UIButton() {
+@mixin UIButton {
   transition: all .2s ease;
   border-radius: $rounded-5;
   cursor: pointer;
@@ -203,5 +207,19 @@ $media-mobile-revert: "min-width: 420px";
 
   &._fullWidth {
     width: 100%;
+  }
+}
+
+@mixin LinkMini {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+  color: $blue-500;
+  transition: all .3s ease;
+
+  &:hover {
+    color: $blue-600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 }
