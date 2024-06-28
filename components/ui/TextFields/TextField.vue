@@ -20,6 +20,7 @@ const value = defineModel();
         class="text-field__input"
         :type="type"
         v-model="value"
+        autocomplete="off"
       />
     </span>
     <span v-if="isError" class="text-field__error">

@@ -1,9 +1,39 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import Loading from "~/components/ui/Loading.vue";
+import { useLoadingStore } from "~/store/isLoadingStore";
+import { useUserStore } from "~/store/userStore";
+
+const useLoading = useLoadingStore();
+const { setUser, getUser } = useUserStore();
+const router = useRouter();
+
+const checkAuthorization = async () => {
+  useLoading.isLoading = true;
+
+  try {
+    const user = await account.get();
+    if (user) {
+      setUser(user);
+      await router.push("/chats");
+      console.log(getUser.name);
+    }
+  } catch (e) {
+    await router.push("/");
+  } finally {
+    useLoading.isLoading = false;
+  }
+};
+
+onMounted(async () => {
+  await checkAuthorization();
+});
+</script>
 
 <template>
   <main class="main">
     <div class="main__inner">
-      <slot />
+      <Loading v-if="useLoading.isLoading" />
+      <slot v-else />
     </div>
   </main>
 </template>

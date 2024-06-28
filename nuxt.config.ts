@@ -2,7 +2,14 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  modules: ["@nuxt/fonts", "@vueuse/nuxt", "@nuxt/image", "nuxt-lucide-icons"],
+  modules: [
+    "@nuxt/fonts",
+    "@vueuse/nuxt",
+    "@nuxt/image",
+    "nuxt-lucide-icons",
+    "nuxt-typed-router",
+    "@pinia/nuxt",
+  ],
   // Подключение модуля шрифтов
   fonts: {
     // Семейства

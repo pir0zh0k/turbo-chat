@@ -12,15 +12,23 @@
   "dependencies": {
     "@nuxt/fonts": "^0.7.0",
     "@nuxt/image": "^1.7.0",
+    "@pinia/nuxt": "^0.5.1",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "@vueuse/core": "^10.11.0",
     "@vueuse/nuxt": "^10.11.0",
+    "appwrite": "^15.0.0",
     "nuxt": "^3.12.2",
+    "nuxt-typed-router": "^3.6.4",
+    "pinia": "^2.1.7",
+    "uuid": "^10.0.0",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
+    "@nestjs/common": "^10.3.9",
+    "@nestjs/core": "^10.3.9",
+    "@types/uuid": "^10.0.0",
     "nuxt-lucide-icons": "^1.0.4",
     "prettier": "^3.3.2",
     "sass": "^1.77.5"

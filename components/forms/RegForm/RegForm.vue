@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import TextField from "~/components/ui/TextFields/TextField.vue";
-import UIButton from "~/components/ui/Buttons/UIButton.vue";
+import { v4 } from "uuid";
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
+import TextField from "~/components/ui/TextFields/TextField.vue";
+import UIButton from "~/components/ui/Buttons/UIButton.vue";
+import { useLoadingStore } from "~/store/isLoadingStore";
 
+// State
 const user = reactive({
   username: "",
   password: "",
@@ -16,17 +19,35 @@ const rules = {
   email: { required, email },
 };
 
+// Libs || Composables
 const $v = useVuelidate(rules, user);
+const useLoading = useLoadingStore();
+const router = useRouter();
 
-async function validate() {
+// Functions
+async function register() {
+  useLoading.isLoading = true;
   const isValid = await $v.value.$validate();
 
-  console.log(isValid);
+  if (!isValid) return;
+
+  const res = await account.create(
+    v4(),
+    user.email,
+    user.password,
+    user.username,
+  );
+
+  if (res.status) {
+    await router.push("/success");
+  }
+
+  useLoading.isLoading = false;
 }
 </script>
 
 <template>
-  <form class="form" @submit.prevent="validate">
+  <form autocomplete="off" class="form" @submit.prevent="register">
     <h1 class="form__title">Регистрация</h1>
     <TextField
       v-model="user.username"

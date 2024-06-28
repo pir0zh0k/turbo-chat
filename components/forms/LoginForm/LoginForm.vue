@@ -1,39 +1,55 @@
 <script setup lang="ts">
+import useVuelidate from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
 import TextField from "~/components/ui/TextFields/TextField.vue";
 import UIButton from "~/components/ui/Buttons/UIButton.vue";
-import useVuelidate from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
+import { useLoadingStore } from "~/store/isLoadingStore";
 
+// States
 const user = reactive({
-  username: "",
+  email: "",
   password: "",
 });
 
 const rules = {
-  username: { required },
+  email: { required, email },
   password: { required },
 };
 
+// Libs || Composables
 const $v = useVuelidate(rules, user);
+const useLoading = useLoadingStore();
+const router = useRouter();
 
-async function validate() {
+// Functions
+const login = async () => {
+  useLoading.isLoading = true;
   const isValid = await $v.value.$validate();
 
-  console.log(isValid);
-}
+  if (!isValid) return;
+
+  await account.createEmailPasswordSession(user.email, user.password);
+  const res = await account.get();
+
+  if (res.status) {
+    await router.push("/chats");
+  }
+
+  useLoading.isLoading = false;
+};
 </script>
 
 <template>
-  <form class="form" @submit.prevent="validate">
+  <form class="form" @submit.prevent="login">
     <h1 class="form__title">Вход</h1>
     <TextField
-      v-model="user.username"
+      v-model="user.email"
       name="username"
       type="text"
-      label="Имя пользователя"
-      placeholder="Введите имя пользователя..."
-      :is-error="$v.username.$error"
-      error="Поле обязательно для заполнения"
+      label="Электронная почта"
+      placeholder="Введите электронную почту..."
+      :is-error="$v.email.$error"
+      error="Введите корректную электронную почту"
     />
     <TextField
       v-model="user.password"
@@ -46,7 +62,7 @@ async function validate() {
     />
     <div class="form__bottom">
       <UIButton variant="normal" size="lg" color="primary"> Войти </UIButton>
-      <NuxtLink class="form__update-password" href="https://google.com">
+      <NuxtLink class="form__update-password" to="https://google.com">
         Забыли пароль?
       </NuxtLink>
     </div>
