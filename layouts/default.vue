@@ -57,6 +57,7 @@ onMounted(async () => {
     background-color: $slate-950-transparent;
     backdrop-filter: blur(20px);
     border-radius: $rounded-15;
+    overflow: hidden;
   }
 }
 </style>

@@ -9,6 +9,7 @@ const props = defineProps({
 <template>
   <NuxtLayout>
     <div class="error-page">
+      <NuxtImg src="/images/global/error.webp" />
       <h1 class="error-page__title">{{ error?.statusCode }}</h1>
       <NuxtLink class="error-page__link" to="/">Вернуться на главную</NuxtLink>
     </div>
